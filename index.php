@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,35 +48,28 @@
    crossorigin=""></script>
    
    <style>
-    #mapContainer { 
+     #mapContainer { 
        height: 800px;
        width: 100%;
        margin: 2%;
-       background: url('./assets/img/footer-bg.png');
        }
-    .custom{
+       .custom{
          width:100%
       }
     
-    .inputs{
+      .inputs{
         margin-top: 9%;
         width: 60%;
         margin-left: 1.5%;
         
       }
       
-      .content{
-        margin-top: 0%;
-        margin-left: 0%;
-        position: relative;
+      .custom-container{
+        padding-right:3% ;
         width: 100%;
-        
-         }
-.custom-container{
-  background: url('./assets/img/footer-bg.png');
-  
-}
-         
+        margin-left: 37%;
+      }
+
      
          
    </style>
@@ -100,7 +91,7 @@
         <ul>
           <li><a class="nav-link scrollto active" href="#faq">Health Tips</a></li>
           <li><a class="nav-link scrollto" href="#portfolio">Emergency Tips</a></li>
-          <li><a class="nav-link scrollto" href="#main">Map</a></li>
+          <li><a class="nav-link scrollto" href="#main">About Us</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <li><a class="getstarted scrollto" href="#main">ORDER A KIT</a></li>
           <li><a class="getstarted scrollto" href="#main">REPORT AN EMERGENCY</a></li>
@@ -117,7 +108,6 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center">
-          <br><br>
           <h1 data-aos="fade-up">Drone Aid focuses on providing quick first aid to customers and a response system for fire disasters</h1>
           <h2 data-aos="fade-up" data-aos-delay="400">We provide an easy-to-use web application for all citizens that may need our services</h2>
           <div data-aos="fade-up" data-aos-delay="600">
@@ -149,7 +139,7 @@
       
    
 
-      <div class="container custom-container " data-aos="fade-up">
+      <div class="container custom-container" data-aos="fade-up">
         <div class="row gx-0">
 
           <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
@@ -157,10 +147,10 @@
     
               <!-- =====GEOLOCATION API====== -->
               <div id="wrapper">
-                <form type ="form"   method ="POST"  id="userForm" action="" class ="myForm" autocomplete ="off">
+                <form type ="form"   method ="POST"  id="userForm" class ="myForm" autocomplete ="off">
                 <input  type="hidden"  name ="latitude" value=""> 
                   <input type="hidden"  name ="longitude" value=""> 
-                  
+
                <button  type ="button" id="button" name="submit"   class="current-location" 
                 style="
                 margin-top: 30px;
@@ -170,7 +160,6 @@
                 transition: 0.5s;
                 color: #fff;
                 background: #4154f1;
-                border: none;
                
                 font-family: 'Open Sans', sans-serif;
 
@@ -187,8 +176,7 @@
                        
                       
                      </script>   
-                <script src="assets/js/location.js"></script> 
-
+              
               </div>
 
             </div>
@@ -220,10 +208,9 @@
                 $(document).on('click','#userForm',function(e){
         e.preventDefault();
        
-        //SEND COORDINATES TO DATABASE
         $.ajax({
         method:"POST",
-        url: "database/index_1.php",
+        url: "database/index.php",
         data:$(this).serialize(),
         success: function(data){
         $('#userForm').find('input').val('')
@@ -232,7 +219,6 @@
 });
 
            }
-           // CURRENT LOCATION - BUTTON
             const currentLocation = () => {
             const status = document.querySelector('.status');
 
@@ -241,7 +227,7 @@
               const latitude = position.coords.latitude;
               const longitude = position.coords.longitude;
               alert("Location received. Please stand by!")
-              var map = L.map('mapContainer').setView([latitude, longitude], 15); //17 is the zoom level
+              var map = L.map('mapContainer').setView([latitude, longitude], 17); //17 is the zoom level
               const attribution = '&copy; <a href=https://www.openstreetmap.org/copyright>OpenStreetMap</a> contributors';
               
               const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -265,27 +251,8 @@
             navigator.geolocation.getCurrentPosition(success, error);
       } 
 
-        
+        document.querySelector('.current-location').addEventListener('click', currentLocation);
           
-               
-          document.querySelector('.current-location').addEventListener('click', currentLocation);
-
-           //$("button").on('click','.current-location',function(e){
-  //         $(document).click(function(e){
-  //          e.preventDefault();
-          
-  //          $.ajax({
-  //          method:"POST",
-  //          url: "database/index_1.php",
-  //          data:$(this).serialize(),
-  //          success: function(data){
-  //           $('#userForm').find('input').val('')
-   
-  //      }});
-  //  });
-   
-              
-
           </script>
         
           </div>        
@@ -299,158 +266,6 @@
     </section><!-- End About Section -->
 
    
-
-
-    <!-- ======= EMERGENCY TIPS Section ======= -->
-    <section id="portfolio" class="portfolio">
-
-      <div class="container" data-aos="fade-up">
-
-        <header class="section-header">
-          <h2>Emergency Tips</h2>
-          <p>Emergency guides you may need</p>
-        </header>
-
-        
-
-        <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/medical.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href=tel:112>Call for medical help</a></h4>
-                <p>If you suspect the sick or injured person needs 
-                  emergency medical care, call 112</p>
-                
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/bandage.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href=https://www.healthline.com/health/first-aid#bandage target="_blank"> Apply first aid BANDAGE</a></h4>
-                <p>In many cases, you can use an adhesive bandage to cover minor cuts, scrapes, or burns. 
-                  <br>To cover and protect larger wounds, you might need to apply a clean gauze pad or roller bandage.</p>
-                
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/cpr.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href=https://www.healthline.com/health/first-aid#cpr target="_blank">First Aid CPR</a></h4>
-                <p>If you see someone collapse or find someone unconscious, 
-                  call 112. If the area around the unconscious person seems safe, approach them and begin CPR.
-                  <br>
-                  Even if you do not have formal training, you can use hands-only CPR to help keep someone alive until professional help arrives.</p>
-                
-              </div>
-            </div>
-          </div>
-
-         <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/burn.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href=https://www.healthline.com/health/first-aid#burns target="_blank">First Aid for BURNS</a></h4>
-                <p>To treat a minor burn, run cool water over the affected area for up to 15 minutes. 
-                  <br>If that is not possible, apply a cool compress to the area instead. 
-                  <br>Avoid applying ice to burned tissue. It can cause more damage.</p>
-                
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/nosebleed.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href=https://www.healthline.com/health/first-aid#nosebleed target="_blank">First Aid for NOSEBLEEDS</a></h4>
-                <p>
-                To treat someone with a nosebleed, ask them to:<br><br>
-                Sit down and lean their head forward.
-                Using the thumb and index finger, firmly press or pinch the nostrils closed.
-                Continue to apply this pressure continuously for five minutes.
-                Check and repeat until the bleeding stops.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/heart.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href=https://www.healthline.com/health/first-aid#heart-attack target="_blank">First Aid for HEART ATTACKS</a></h4>
-                <p>If you think someone might be experiencing a heart attack, 
-                  call 911. If they have been prescribed nitroglycerin, 
-                  help them locate and take this medication. 
-                  <br>
-                  Cover them with a blanket and comfort them until professional help arrives.
-                  <br>
-                  If they have difficulty breathing, loosen any clothing around their chest and neck. 
-                  Start CPR if they lose consciousness.</p>
-               
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/baby.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href=https://www.healthline.com/health/first-aid#babies target="_blank">First aid kit for BABIES</a></h4>
-                <p>If you have a baby, you might need to replace or supplement some of the products in a 
-                  <br>standard first aid kit with infant-appropriate alternatives. 
-                  <br> For example, your kit should include an infant thermometer and infant acetaminophen or ibuprofen.</p>
-           
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/heat.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href=https://www.healthline.com/health/first-aid#heatstroke target="_blank">First aid for HEATSTROKE</a></h4>
-                <p>When your body overheats, it can cause heat exhaustion which can lead to a heatstroke
-                  <br> If someone is overheated, encourage them to rest in a cool location.
-                  <br> Cover them with a cool, damp sheet, apply a cool, 
-                  <br>wet towel to the back of their neck or spongethem with cool water.  
-                </p>
-          
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/bee.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4><a href=https://www.healthline.com/health/first-aid#bee-sting target="_blank">First aid for BEE STING</a></h4>
-                <p>
-                  If a person is having an allergic reaction to a bee sting, <a href=tel:112>Call 112</a>.
-                  <br>To treat itching or pain from the sting, consider applying calamine lotion 
-                  <br>or a paste of baking soda and water to the area several times a day.
-                </p>
-
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section><!-- End Portfolio Section -->
-
-
-
-
     
     <!-- ======= HEALTH TIPS Section ======= -->
     <section id="faq" class="faq">
@@ -579,7 +394,158 @@
 
       </div>
 
-    </section><!-- End HEALTH Section -->
+    </section><!-- End F.A.Q Section -->
+
+    <!-- ======= EMERGENCY TIPS Section ======= -->
+    <section id="portfolio" class="portfolio">
+
+      <div class="container" data-aos="fade-up">
+
+        <header class="section-header">
+          <h2>Emergency Tips</h2>
+          <p>Emergency guides you may need</p>
+        </header>
+
+        
+
+        <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/medical.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href=tel:112>Call for medical help</a></h4>
+                <p>If you suspect the sick or injured person needs 
+                  emergency medical care, call 112</p>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/bandage.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href=https://www.healthline.com/health/first-aid#bandage> Apply first aid BANDAGE</a></h4>
+                <p>In many cases, you can use an adhesive bandage to cover minor cuts, scrapes, or burns. 
+                  <br>To cover and protect larger wounds, you might need to apply a clean gauze pad or roller bandage.</p>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/cpr.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href=https://www.healthline.com/health/first-aid#cpr>First Aid CPR</a></h4>
+                <p>If you see someone collapse or find someone unconscious, 
+                  call 112. If the area around the unconscious person seems safe, approach them and begin CPR.
+                  <br>
+                  Even if you do not have formal training, you can use hands-only CPR to help keep someone alive until professional help arrives.</p>
+                
+              </div>
+            </div>
+          </div>
+
+         <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/burn.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href=https://www.healthline.com/health/first-aid#burns>First Aid for BURNS</a></h4>
+                <p>To treat a minor burn, run cool water over the affected area for up to 15 minutes. 
+                  <br>If that is not possible, apply a cool compress to the area instead. 
+                  <br>Avoid applying ice to burned tissue. It can cause more damage.</p>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/nosebleed.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href=https://www.healthline.com/health/first-aid#nosebleed>First Aid for NOSEBLEEDS</a></h4>
+                <p>
+                To treat someone with a nosebleed, ask them to:<br><br>
+                Sit down and lean their head forward.
+                Using the thumb and index finger, firmly press or pinch the nostrils closed.
+                Continue to apply this pressure continuously for five minutes.
+                Check and repeat until the bleeding stops.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/heart.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href=https://www.healthline.com/health/first-aid#heart-attack>First Aid for HEART ATTACKS</a></h4>
+                <p>If you think someone might be experiencing a heart attack, 
+                  call 911. If they have been prescribed nitroglycerin, 
+                  help them locate and take this medication. 
+                  <br>
+                  Cover them with a blanket and comfort them until professional help arrives.
+                  <br>
+                  If they have difficulty breathing, loosen any clothing around their chest and neck. 
+                  Start CPR if they lose consciousness.</p>
+               
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/baby.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href=https://www.healthline.com/health/first-aid#babies>First aid kit for BABIES</a></h4>
+                <p>If you have a baby, you might need to replace or supplement some of the products in a 
+                  <br>standard first aid kit with infant-appropriate alternatives. 
+                  <br> For example, your kit should include an infant thermometer and infant acetaminophen or ibuprofen.</p>
+           
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/heat.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href=https://www.healthline.com/health/first-aid#heatstroke>First aid for HEATSTROKE</a></h4>
+                <p>When your body overheats, it can cause heat exhaustion which can lead to a heatstroke
+                  <br> If someone is overheated, encourage them to rest in a cool location.
+                  <br> Cover them with a cool, damp sheet, apply a cool, 
+                  <br>wet towel to the back of their neck or spongethem with cool water.  
+                </p>
+          
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/bee.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href=https://www.healthline.com/health/first-aid#bee-sting>First aid for BEE STING</a></h4>
+                <p>
+                  If a person is having an allergic reaction to a bee sting, <a href=tel:112>Call 112</a>.
+                  <br>To treat itching or pain from the sting, consider applying calamine lotion 
+                  <br>or a paste of baking soda and water to the area several times a day.
+                </p>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- End Portfolio Section -->
+
+    
+
+   
 
   
     <!-- ======= Contact Section ======= -->
@@ -608,13 +574,13 @@
                 <div class="info-box">
                   <i class="bi bi-telephone"></i>
                   <h3>Call Us</h3>
-                  <a href=tel:192 title="Call->192">Fire Service</a>
+                  <a href=tel:192>Fire Service</a>
                   <br>
-                  <a href=tel:193 title="Call->193">Ambulance</a>
+                  <a href=tel:193>Ambulance</a>
                   <br>
-                  <a href=tel:112 title="Call->112">Police</a>
+                  <a href=tel:112>Police</a>
                   <br>
-                  <a href=tel:+233302773900 title="Call->233302773900">Police Headquarters</a>
+                  <a href=tel:+233302773900>Police Headquarters</a>
                 </div>
               </div>
               <div class="col-md-6">
@@ -687,7 +653,7 @@
               <img src="assets/img/droneicon.png" alt="">
               <span>DroneAid</span>
             </a>
-            <p>Drone Aid focuses on providing quick first aid to customers and a response system to fire disasters.</p>
+            <p>Drone Aid focuses on providing quick first aid to customers and a response system for fire disasters.</p>
             <div class="social-links mt-3">
               <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -700,7 +666,7 @@
             <h4>Useful Links</h4>
             <ul>
               <li><i class="bi bi-chevron-right"></i> <a href="#header">Home</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#about">Map</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#about">About us</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#haeder">Services</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Health Tips</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Emergency Tips</a></li>
@@ -758,8 +724,10 @@
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+
   <!-- JavaScript Source geolocation -->
+  <script src="assets/js/location.js"></script>
+  <script src="assets/js/main.js"></script>
 
 
 </body>
